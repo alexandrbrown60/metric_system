@@ -1,0 +1,24 @@
+html, body {
+	height: 100%;
+}
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.form-box input {
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	border: 2px solid #dadada;
+	padding-left: 10px;
+}
+.form-box button {
+	width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background: #00b3ff;
+    color: #fefefe;
+    font-size: 17px;
+    border-bottom: 4px solid #0973a1;
+}
