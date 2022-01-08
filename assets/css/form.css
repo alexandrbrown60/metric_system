@@ -5,6 +5,9 @@ html, body {
     outline: 0;
     outline-offset: 0;
 }
+.col-12 h2 {
+	margin-top: 20px;
+}
 .form-box input {
 	width: 100%;
 	height: 40px;

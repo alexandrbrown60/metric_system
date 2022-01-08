@@ -27,7 +27,7 @@ $name = $result->$id->name;
 			</div>
 		</div>
 		<div class="form-box">
-			<form>
+			<form method="post" action="../controllers/send-agent-form.php">
 				<div class="form-group">
 					<input type="number" placeholder="Кол-во встреч" name="meetings" required>
 				</div>
