@@ -7,9 +7,12 @@ ini_set('display_startup_errors', 1);
 
 require '../modules/globals.php';
 require '../modules/classes/crm/CrmManager.php';
+require '../modules/classes/database/Connection.php';
+require '../modules/classes/database/DatabaseManager.php';
 require 'classes/Telegram.php';
 
 $crm = new CrmManager();
+$db = new DatabaseManager(DATABASE_NAME);
 
 $update = json_decode(file_get_contents("php://input"), JSON_OBJECT_AS_ARRAY);
 $tg = new Telegram($update);
@@ -47,17 +50,28 @@ if($tg->isMessage()) {
 		}
 	}
 }
-// else {
-// 	$clickedButton = $tg->clickedButton;
-//     $chatId = $tg->userId;
+else {
+	$agentId = $tg->clickedButton;
+    $chatId = $tg->userId;
 
-//     if($clickedButton == "fail") {
-//     	$text = "Введите ID своего профиля в CRM. Если вы не знаете, как его узнать, обратитесь за помощью к руководителю.";
-//     	$tg->sendMessage("chat_id" => $chatId, "text" => $text);
-//     } else {
-//     	$text = "Ваш id: $clickedButton";
-//     	$tg->sendMessage("chat_id" => $chatId, "text" => $text);
-//     }
-// }
+    if($agentId == "fail") {
+
+    	$text = "Введите ID своего профиля в CRM. Если вы не знаете, где его получить, обратитесь за помощью к руководителю.\n\nНе вводите любой номер! Это может привести к ошибкам.";
+    	$tg->sendMessage(["chat_id" => $chatId, "text" => $text]);
+
+    } else {
+    	$agent = $crm->getAgentInfo($agentId);
+    	$agentName = $agent->$agentId->name . " " . $agent->$agentId->surname;
+    	$groupId = $agent->$agentId->division_id;
+    	$tableName = "agent_$agentId";
+
+    	$sql = "INSERT IGNORE INTO managers (id, telegram, name, groupId, tableName) VALUES (?, ?, ?, ?, ?)";
+    	$inputs = [$agentId, $chatId, $agentName, $groupId, $tableName];
+    	$db->sendRequest($sql, $inputs);
+
+    	$text = "Ваш телеграм успешно привязан к системе отчетов.\n\nЕжедневно в 20:00 вам будет приходить форма, которую необходимо заполнить.";
+    	$tg->sendMessage(["chat_id" => $chatId, "text" => $text]);
+    }
+}
 
 
