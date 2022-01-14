@@ -61,15 +61,38 @@ else {
     	$tg->sendMessage(["chat_id" => $chatId, "text" => $text]);
 
     } else {
+    	//1. get agent info from crm
     	$agent = $crm->getAgentInfo($agentId);
     	$agentName = $agent->$agentId->name . " " . $agent->$agentId->surname;
     	$groupId = $agent->$agentId->division_id;
     	$tableName = "agent_$agentId";
 
+    	//2. create row in manager table
     	$sql = "INSERT IGNORE INTO managers (id, telegram, name, groupId, tableName) VALUES (?, ?, ?, ?, ?)";
     	$inputs = [$agentId, $chatId, $agentName, $groupId, $tableName];
     	$db->sendRequest($sql, $inputs);
 
+    	//3. create a new table for this manager
+		$columns = "date DATE PRIMARY KEY,
+					calls INT ( 11 ) NULL,
+					meetings INT ( 11 ) NULL,
+					presentations INT ( 11 ) NULL,
+					additional INT ( 11 ) NULL,
+					zadatki INT ( 11 ) NULL,
+					sdelki INT ( 11 ) NULL,
+					incomeCalls INT ( 11 ) NULL,
+					flats INT ( 11 ) NULL,
+					flatsExclusive INT ( 11 ) NULL,
+					houses INT ( 11 ) NULL,
+					housesExclusive INT ( 11 ) NULL,
+					commercial INT ( 11 ) NULL,
+					commercialExclusive INT ( 11 ) NULL
+					";
+
+		$db->createTable("CREATE TABLE IF NOT EXISTS $tableName ($columns)");
+
+
+		//4. Send message to user
     	$text = "Ваш телеграм успешно привязан к системе отчетов.\n\nЕжедневно в 20:00 вам будет приходить форма, которую необходимо заполнить.";
     	$tg->sendMessage(["chat_id" => $chatId, "text" => $text]);
     }

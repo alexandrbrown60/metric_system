@@ -12,4 +12,9 @@ class DatabaseManager extends Connection {
 		$query->execute();
 		return $query->fetchAll();
 	}
+
+	public function createTable($sql) {
+		$query = PDO::prepare($sql);
+		$query->execute();
+	}
 }
