@@ -15,7 +15,8 @@ $crm = new CrmManager();
 $db = new DatabaseManager(DATABASE_NAME);
 
 $update = json_decode(file_get_contents("php://input"), JSON_OBJECT_AS_ARRAY);
-$tg = new Telegram($update);
+$tg = new Telegram();
+$tg->getUpdate($update);
 
 if($tg->isMessage()) {
 	if($tg->userMessage == "/start") {
