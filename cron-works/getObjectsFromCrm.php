@@ -12,17 +12,16 @@ $crm = new CrmManager();
 $date = Date("Y-m-d");
 
 //set fields for search
-$flatFields = 1522;
-$commercialFields = 1530;
-$housesFields = 1538;
+$flatFields = [['id' => 1522, 'value' => "Наша база"]];
+$commercialFields = [['id' => 1530, 'value' => "Наша база"]];
+$housesFields = [['id' => 1538, 'value' => "Наша база"]];
 
 //get all general data and set to db
-$allFlats = $crm->getQuantityFor(1, $flatFields);
-$allCommercial = $crm->getQuantityFor(2, $commercialFields);
-$allHouses = $crm->getQuantityFor(3, $housesFields);
+$allFlats = $crm->getQuantityByFields(1, $flatFields);
+$allCommercial = $crm->getQuantityByFields(2, $commercialFields);
+$allHouses = $crm->getQuantityByFields(3, $housesFields);
 
 $generalObjectsData = [$date, $allFlats, $allHouses, $allCommercial];
-print_r($allFlats);
 
 $sql = "INSERT INTO generalPropertiesData (date, flats, houses, commercial) VALUES (?, ?, ?, ?)";
 $db->sendRequest($sql, $generalObjectsData);
