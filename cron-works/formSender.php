@@ -9,4 +9,6 @@ require "../modules/classes/database/DatabaseManager.php";
 require "../telegram/classes/Telegram.php";
 
 $db = new DatabaseManager(DATABASE_NAME);
+$tg = new Telegram();
+
 
