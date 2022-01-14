@@ -5,7 +5,6 @@ require '../modules/classes/database/DatabaseManager.php';
 require '../modules/classes/crm/CrmManager.php';
 
 $id = $_POST['agent-id'];
-$telegram = $_POST['telegram'];
 $meetings = $_POST['meetings'];
 $calls = $_POST['calls'];
 $presentations = $_POST['presentations'];
@@ -15,33 +14,45 @@ $sdelki = $_POST['sdelki'];
 
 $db = new DatabaseManager(DATABASE_NAME);
 $crm = new CrmManager();
+$date = Date('Y-m-d');
 $agent = $crm->getAgentInfo($id);
 $divisionId = $agent->$id->division_id;
 $agentName = $agent->$id->name . " " . $agent->$id->surname;
-
-// Создаем новую таблицу, в которую будут записываться данные отчета
 $table = "agent_$id";
-$columns = "date DATE PRIMARY KEY,
-			calls INT ( 11 ),
-			meetings INT ( 11 ),
-			presentations INT ( 11 ),
-			additional INT ( 11 ),
-			zadatki INT ( 11 ),
-			sdelki INT ( 11 ),
-			incomeCalls INT ( 11 ),
-			flats INT ( 11 ),
-			flatsExclusive INT ( 11 ),
-			houses INT ( 11 ),
-			housesExclusive INT ( 11 ),
-			commercial INT ( 11 ),
-			commercialExclusive INT ( 11 )
-			";
-
-$db->sendRequest("CREATE TABLE IF NOT EXIST $table($columns)");
-
-//Добавляем риелтора в таблицу
-$addAgent = "INSERT IGNORE INTO managers (id, telegram, name, groupId, tableName) VALUES (?, ?, ?, ?, ?)";
-$db->sendRequest($addAgent, [$id, $telegram, $name, $divisionId, $table]);
 
 //Записываем данные в таблицу риелтора
-$addData = "INSERT INTO $table ()"
+$addData = "INSERT IGNORE INTO $table (date, calls, meetings, presentations, additional, zadatki, sdelki) VALUES (?, ?, ?, ?, ?, ?, ?);"
+$db->sendRequest($addData, [$date, $calls, $meetings, $presentations, $additional, $zadatki, $sdelki]);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Форма отчета успешно отправлена | Kluch Metrics</title>
+
+	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+</head>
+<body>
+	<style type="text/css">
+		html, body {
+			height: 100%
+		}
+		body {
+			background-color: #00b3ff;
+			color: #fefefe;
+		}
+		.col-12 {
+			padding-top: 15%;
+		}
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>👌</h1>
+				<h2>Отчет отправлен!</h2>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
