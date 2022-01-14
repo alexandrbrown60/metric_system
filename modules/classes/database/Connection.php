@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseConnection extends PDO {
+class Connection extends PDO {
    public function __construct($dbname)
     {
         $file = 'config.ini';
@@ -13,7 +13,7 @@ class DatabaseConnection extends PDO {
         }
         catch( Exception $Exception )
         {
-            print_r($Exception->getMessage());
+            print_r("Connection error: " . $Exception->getMessage());
         }
     }
 }

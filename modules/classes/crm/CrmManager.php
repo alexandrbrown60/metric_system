@@ -5,15 +5,18 @@ class CrmManager {
 	private $domain = "http://kluch.intrumnet.com:81/sharedapi";
 
 	//получение всех объектов типа $types по фильтрам $fields
-	public function getQuantityFor($type, $fields) {
+	public function getQuantityFor($type, $fieldId) {
 		$method = "/stock/filter";
 		$url = $this->domain.$method;
 
 		$params=array(  
             'type'=>$type,  
-            'limit'=>500,  
-            'fields' => $fields,   
-            'order'=> "desc"  
+            'limit'=>0,  
+            'fields' => array(
+            	array('id' => $fieldId, 'value' => "Наша база")
+            ),   
+            'order'=> "desc",
+            'count_total' => 1  
         );  
       
 		$post = array(  
@@ -30,8 +33,7 @@ class CrmManager {
 		$result = json_decode(curl_exec($ch));  
 		curl_close ($ch);
 
-		$quantity = count($result);
-		return $quantity;
+		return $result->data->count;
 	}
 
 	//получение данных об агенте по id
