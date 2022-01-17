@@ -1,8 +1,12 @@
 <?php
+header("Content-type: text/html; charset=utf-8");
+//ошибки
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 require '../modules/globals.php';
 require '../modules/classes/database/Connection.php';
 require '../modules/classes/database/DatabaseManager.php';
-require '../modules/classes/crm/CrmManager.php';
 
 $id = $_POST['agent-id'];
 $meetings = $_POST['meetings'];
@@ -13,15 +17,11 @@ $zadatki = $_POST['zadatki'];
 $sdelki = $_POST['sdelki'];
 
 $db = new DatabaseManager(DATABASE_NAME);
-$crm = new CrmManager();
 $date = Date('Y-m-d');
-$agent = $crm->getAgentInfo($id);
-$divisionId = $agent->$id->division_id;
-$agentName = $agent->$id->name . " " . $agent->$id->surname;
 $table = "agent_$id";
 
 //Записываем данные в таблицу риелтора
-$addData = "INSERT IGNORE INTO $table (date, calls, meetings, presentations, additional, zadatki, sdelki) VALUES (?, ?, ?, ?, ?, ?, ?);"
+$addData = "INSERT IGNORE INTO $table (date, calls, meetings, presentations, additional, zadatki, sdelki) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $db->sendRequest($addData, [$date, $calls, $meetings, $presentations, $additional, $zadatki, $sdelki]);
 ?>
 <!DOCTYPE html>

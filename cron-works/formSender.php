@@ -15,7 +15,7 @@ $sql = "SELECT * FROM managers";
 $agents = $db->getData($sql);
 
 if($agents) {
-	foreach ($agents as $key) {
+	foreach ($agents as $key => $value) {
 		$agentId = $agents[$key]['id'];
 		$url = "https://kluch.me/kluch_metrics/views/form.php?id=$agentId";
 
@@ -25,7 +25,7 @@ if($agents) {
         $replyMarkup = json_encode($keyboard);
 
 		$text = "Привет✌️\nПришло время заполнить ежедневный отчет📊";
-		$tg->sendMessage(['chat_id' => $agents[$key]['telegram'], 'text' => $text], 'reply_markup' => $replyMarkup);
+		$tg->sendMessage(['chat_id' => $agents[$key]['telegram'], 'text' => $text, 'reply_markup' => $replyMarkup]);
 	}
 }
 
