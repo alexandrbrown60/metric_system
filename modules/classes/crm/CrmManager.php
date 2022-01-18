@@ -25,7 +25,7 @@ class CrmManager {
 	}
 
 	//получение всех объектов типа $types по фильтрам $fields
-	public function getQuantityByFields($type, $fields) {
+	public function getQuantityByFields($type, $fields, $manager = null) {
 		$method = "/stock/filter";
 
 		$params=array(  
@@ -34,7 +34,11 @@ class CrmManager {
             'fields' => $fields,   
             'order'=> "desc",
             'count_total' => 1  
-        );  
+        );
+
+        if($manager != null) {
+        	$params['manager'] = $manager;
+        } 
       
 		$result = $this->initCurl($method, $params);
 
@@ -55,19 +59,19 @@ class CrmManager {
 		return $result->data; 
 	}
 
-	//получение кол-ва входящих звонков
-	public function getIncomeCalls($id, $date) {
+	//получение кол-ва входящих звонков для одного менеджера
+	public function getIncomeCalls($date, $id = null) {
 		$method = "/applications/filter";
 
 		$params = array(
-			'manager' => $id,
-			'limit' => 1,
+			'limit' => 0,
 			'count_total' => 1,
-			'date' => array(
-				'from' => $date,
-				'to' => $date
-			)
+			'date' => $date
 		);
+
+		if($id != null) {
+			$params['manager'] = $id;
+		}
 
 		$result = $this->initCurl($method, $params);
 		return $result->data->count;
