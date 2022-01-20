@@ -7,12 +7,12 @@ require __DIR__."/../modules/classes/crm/CrmManager.php";
 $db = new DatabaseManager(DATABASE_NAME);
 $crm = new CrmManager();
 
-$currentDate = Date('Y-m-d', strtotime('-1 day'));
+$currentDate = Date('Y-m-d', strtotime("-1 days"));
 $date = ['from' => $currentDate, 'to' => $currentDate];
 
 //получаем всех агентов
-$sql = "SELECT * FROM managers";
-$agents = $db->getData($sql);
+$agentsSql = "SELECT * FROM managers";
+$agents = $db->getData($agentsSql);
 
 if($agents) {
 	foreach($agents as $key => $value) {
@@ -23,9 +23,9 @@ if($agents) {
 		$incomeCalls = $crm->getIncomeCalls($date, $agentId);
 
 		//обновляем базу данных агента
-		$sql = "INSERT INTO $tableName (date, incomeCalls) VALUES (:date, :incomeCalls) ON DUPLICATE KEY UPDATE incomeCalls = :incomeCalls";
-		$input = [':date' => $date, ':incomeCalls' => $incomeCalls];
+		$sql = "INSERT INTO $tableName (date, incomeCalls) VALUES (?, ?) ON DUPLICATE KEY UPDATE incomeCalls = ?";
+		$input = [$currentDate, $incomeCalls, $incomeCalls];
 
-		$db->sendRequest($sql);
+		$db->sendRequest($sql, $input);
 	}
 }
