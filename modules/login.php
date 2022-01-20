@@ -2,5 +2,7 @@
 require 'globals.php';
 
 if($_POST['password'] == PASSWORD) {
-	return true;
+	session_start();
+	$_SESSION['login'] = "metrics";
+	header("Location: https://kluch.me/kluch_metrics/views/main.html");
 }

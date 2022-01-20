@@ -15,8 +15,10 @@
 			<div class="col-12">
 				<div class="form-box">
 					<img src="assets/img/logo.svg">
-					<input type="password" name="password" id="password" placeholder="Пароль" class="login-input">
-					<button id="send" class="login-btn">Вперёд</button>
+					<form action="modules/login.php" method="POST">
+						<input type="password" name="password" id="password" placeholder="Пароль" class="login-input">
+						<button id="send" type="submit" class="login-btn">Вперёд</button>
+					</form>
 				</div>
 			</div>
 		</div>
