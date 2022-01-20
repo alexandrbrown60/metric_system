@@ -1,2 +1,2 @@
-<script type="text/javascript" src="../../assets/js/jquery.js"></script>
-<script type="text/javascript" src="../../controllers/js/getData.js"></script>
+<script type="text/javascript" src="https://kluch.me/kluch_metrics/assets/js/jquery.js"></script>
+<script type="text/javascript" src="https://kluch.me/kluch_metrics/controllers/js/getData.js"></script>

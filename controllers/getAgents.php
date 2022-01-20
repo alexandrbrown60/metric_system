@@ -13,7 +13,7 @@ if($agents) {
 		$id = $agents[$key]['id'];
 		$name = $agents[$key]['name'];
 		$division = $agents[$key]['groupId'];
-		$status = $agents[$key]['onVacation'] ? "Работает" : "В отпуске";
+		$status = $agents[$key]['onVacation'] == 0 ? "Работает" : "В отпуске";
 		echo "<tr><td>";
 		echo "$name </td><td>";
 		echo "$division </td><td>";

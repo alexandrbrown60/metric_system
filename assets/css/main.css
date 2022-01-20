@@ -18,3 +18,11 @@ main {
 a {
 	color: #5e8799;
 }
+table {
+	color: #fefefe !important;
+	border-top: none;
+}
+.table thead th {
+	border-bottom: 2px solid #1f354b;
+	border-top: none;
+}
