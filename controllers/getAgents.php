@@ -5,7 +5,7 @@ require __DIR__."/../modules/classes/database/DatabaseManager.php";
 
 $db = new DatabaseManager(DATABASE_NAME);
 
-$sql = "SELECT * FROM managers";
+$sql = "SELECT * FROM managers ORDER BY groupId";
 $agents = $db->getData($sql);
 
 if($agents) {
