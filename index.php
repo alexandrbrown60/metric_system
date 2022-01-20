@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if($_SESSION['login'] == "metrics") {
+	header("Location: https://kluch.me/kluch_metrics/views/main.php");
+}	
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
