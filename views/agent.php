@@ -9,7 +9,7 @@ require '../controllers/getSingleAgent.php';
 
      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Агент</h1>
+            <h1 class="h2"><?php echo $agentName;?></h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Экспорт</button>
@@ -21,8 +21,35 @@ require '../controllers/getSingleAgent.php';
             </div>
            </div>
            <div class="row">
-            <h3>Краткая сводка за неделю</h3>
-            
+            <div class="col-3">
+              <h4>Последние данные: <?php echo $date;?></h4>
+              <div class="data-box">
+                <table class="table">
+                  <tbody>
+                    <?php
+                      foreach($displayTable as $key => $value) {
+                        echo "<tr><td>";
+                        echo "$key</td><td>";
+                        echo "$displayTable[$key]</td></tr>";
+                      }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-4">
+              <h4>Воронка набора</h4>
+              <div class="flex">
+                <div class="funnel"></div>
+              </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+              <h4>Воронка продаж</h4>
+              <div class="flex">
+                <div class="funnel2"></div>
+              </div>
+            </div>            
            </div>
 
 
@@ -33,5 +60,48 @@ require '../controllers/getSingleAgent.php';
 <?php 
 require 'html-parts/footer.php';
 ?>
+<script type="text/javascript">
+  var data1 = {
+            labels: ['Исходящие', 'Встречи'],
+            colors: ['#FFB178', '#FF3C8E'],
+            values: [<?php echo $displayTable['Исходящие'];?>, <?php echo $displayTable['Встречи'];?>]
+        };
+
+  var graph = new FunnelGraph({
+      container: '.funnel',
+      gradientDirection: 'horizontal',
+      data: data1,
+      displayPercent: true,
+      direction: 'vertical',
+      width: 300,
+      height: 600,
+      subLabelValue: 'raw'
+  });
+
+  graph.draw();
+
+  //second graph
+  var data2 = {
+    labels: ['Входящие', 'Показы', 'Задатки', 'Сделки'],
+    colors: ['#FFB178', '#FF3C8E'],
+    values: [<?php echo $displayTable['Входящие'];?>, 
+              <?php echo $displayTable['Презентации'];?>, 
+              <?php echo $displayTable['Задатки'];?>, 
+              <?php echo $displayTable['Сделки'];?>
+              ]
+  };
+  var graph2 = new FunnelGraph({
+      container: '.funnel2',
+      gradientDirection: 'horizontal',
+      data: data2,
+      displayPercent: true,
+      direction: 'vertical',
+      width: 300,
+      height: 600,
+      subLabelValue: 'raw'
+  });
+
+  graph2.draw();
+</script>
 </body>
 </html>

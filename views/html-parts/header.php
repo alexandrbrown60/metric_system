@@ -14,6 +14,8 @@ if($_SESSION['login'] != 'metrics') {
 
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/funnel-graph.css">
+	<link rel="stylesheet" href="../assets/css/funnel-graph-theme.min.css">
 </head>
 <body>
 	<nav class="navbar navbar-dark dark-background flex-md-nowrap p-3">
