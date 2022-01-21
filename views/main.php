@@ -1,59 +1,11 @@
 <?php 
 require 'html-parts/header.php';
+require '../controllers/getObjects.php';
 ?>
     <div class="container-fluid">
     	<div class="row">
-    	<nav class="col-md-2 d-none d-md-block dark-background sidebar">
-          <div class="sidebar-sticky">
-          	<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Объекты</span>
-            </h6>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  Общая сводка <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Квартиры
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Коммерция
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Дома и участки
-                </a>
-              </li>
-            </ul>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Сотрудники</span>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Все сотрудники
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  По группам
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  По агентам
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+    	<?php require 'html-parts/navigation.php';?>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Общая сводка по объектам</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
@@ -66,9 +18,65 @@ require 'html-parts/header.php';
               </button>
             </div>
           </div>
-
-          <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1440" height="608" style="display: block; width: 1440px; height: 608px;"></canvas>
-
+          <div class="row">
+            <div class="col-4">
+              <div class="data-box">
+                <p class="type">Квартиры</p>
+                <div class="row">
+                  <div class="col-6">
+                    <p class="date"><?php echo $lastDay;?></p>
+                    <div class="simple-info">
+                      <p class="main-data"><?php echo $lastFlats;?></p>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <p class="date"><?php echo $day;?></p>
+                    <div class="simple-info growth">
+                      <p class="main-data"><?php echo $flats;?> <span id="flat-growth"><?php echo $flatsGrowth;?></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="data-box">
+                <p class="type">Дома и участки</p>
+                <div class="row">
+                  <div class="col-6">
+                    <p class="date"><?php echo $lastDay;?></p>
+                    <div class="simple-info">
+                      <p class="main-data"><?php echo $lastHouses;?></p>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <p class="date"><?php echo $day;?></p>
+                    <div class="simple-info growth">
+                      <p class="main-data"><?php echo $houses;?> <span id="houses-growth"><?php echo $housesGrowth;?></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="data-box">
+                <p class="type">Коммерция</p>
+                <div class="row">
+                  <div class="col-6">
+                    <p class="date"><?php echo $lastDay;?></p>
+                    <div class="simple-info">
+                      <p class="main-data"><?php echo $lastComm;?></p>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <p class="date"><?php echo $day;?></p>
+                    <div class="simple-info growth">
+                      <p class="main-data"><?php echo $comm;?> <span id="comm-growth"><?php echo $commGrowth;?></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </main>
         

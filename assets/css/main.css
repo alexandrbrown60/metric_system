@@ -26,3 +26,28 @@ table {
 	border-bottom: 2px solid #1f354b;
 	border-top: none;
 }
+.table tbody td {
+	border-top: 1px solid #1f354a;
+}
+.data-box {
+	background: #064764;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 5px 5px 0px #00344b;
+}
+.data-box .date {
+	margin-bottom: 0;
+}
+.data-box .simple-info .main-data {
+	font-size: 35px;
+    font-weight: bold;
+    color: #517b8d;
+}
+.data-box .growth .main-data {
+	color: #a3c2cf;
+}
+.data-box .main-data span {
+	font-size: 25px;
+	color: #309771;
+}
+
