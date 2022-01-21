@@ -1,7 +1,7 @@
 <?php 
 require 'html-parts/header.php';
+require '../controllers/getSingleAgent.php';
 
-//$id = $_GET['id'];
 ?>
 <div class="container-fluid">
   <div class="row">
