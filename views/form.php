@@ -28,24 +28,38 @@ $name = $result->$id->name;
 		</div>
 		<div class="form-box">
 			<form method="post" action="../controllers/send-agent-form.php">
-				<div class="form-group">
-					<input type="number" placeholder="Кол-во встреч" name="meetings" required>
-				</div>
-				<div class="form-group">
-					<input type="number" name="calls" placeholder="Исходящих звонков" required>
-				</div>
-				<div class="form-group">
-					<input type="number" name="presentations" placeholder="Показов" required>
-				</div>
-				<div class="form-group">
-					<input type="number" name="additional" placeholder="Доп. показы" required>
-				</div>
-				<div class="form-group">
-					<input type="number" name="zadatki" placeholder="Задатки" required>
-				</div>
-				<div class="form-group">
-					<input type="number" name="sdelki" placeholder="Сделки" required>
-				</div>
+				<table>
+					<tbody>
+						<tr>
+							<td><label for="meetings">Встреч:</label></td>
+							<td><input type="number" name="meetings" id="meetings" required></td>
+						</tr>
+						<tr>
+							<td><label for="calls">Исходящих:</label></td>
+							<td><input type="number" name="calls" id="calls" required></td>
+						</tr>
+						<tr>
+							<td><label for="pres">Показы:</label></td>
+							<td><input type="number" id="pres" required></td>
+						</tr>
+						<tr>
+							<td><label for="adds">Доп. показы:</label></td>
+							<td><input type="number" name="presentations" id="pres" required></td>
+						</tr>
+						<tr>
+							<td><label for="zadatki">Задатки:</label></td>
+							<td><input type="number" name="zadatki" id="zadatki" required></td>
+						</tr>
+						<tr>
+							<td><label for="sdelki">Сделки:</label></td>
+							<td><input type="number" name="sdelki" id="sdelki" required></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
 				<input type="hidden" value="<?php echo $id;?>" name="agent-id">
 				<div class="form-group">
 					<button type="submit">Отправить</button>

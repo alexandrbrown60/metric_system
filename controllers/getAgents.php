@@ -15,7 +15,7 @@ if($agents) {
 		$division = $agents[$key]['groupId'];
 		$status = $agents[$key]['onVacation'] == 0 ? "Работает" : "В отпуске";
 		echo "<tr><td>";
-		echo "$name </td><td>";
+		echo "<a href='https://kluch.me/kluch_metrics/views/agent.php?id=".$id."'>$name</a></td><td>";
 		echo "$division </td><td>";
 		echo "$status </td><td>";
 		echo "<a href='#'>Удалить</a></td></tr>";

@@ -25,3 +25,9 @@ html, body {
     font-size: 17px;
     border-bottom: 4px solid #0973a1;
 }
+table {
+	width: 100%;
+}
+table tbody tr td {
+	padding: 10px 0;
+}
