@@ -1,3 +1,4 @@
 modules/globals.php
 modules/classes/database/config.ini
 .DS_Store
+text.php

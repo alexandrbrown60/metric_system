@@ -74,12 +74,12 @@ else {
 
     	//3. create a new table for this manager
 		$columns = "date DATE PRIMARY KEY,
-					calls INT ( 11 ) NULL,
-					meetings INT ( 11 ) NULL,
-					presentations INT ( 11 ) NULL,
-					additional INT ( 11 ) NULL,
-					zadatki INT ( 11 ) NULL,
-					sdelki INT ( 11 ) NULL,
+					calls INT ( 11 ) NULL DEFAULT '0',
+					meetings INT ( 11 ) NULL DEFAULT '0',
+					presentations INT ( 11 ) NULL DEFAULT '0',
+					additional INT ( 11 ) NULL DEFAULT '0',
+					zadatki INT ( 11 ) NULL DEFAULT '0',
+					sdelki INT ( 11 ) NULL DEFAULT '0',
 					incomeCalls INT ( 11 ) NULL,
 					flats INT ( 11 ) NULL,
 					flatsExclusive INT ( 11 ) NULL,
