@@ -53,4 +53,21 @@ table {
 .funnel {
 	width: 100%;
 }
+.date-picker p {
+	font-size: 13px;
+}
+.date-picker input {
+	background: #064764;
+	border: none;
+    padding: 5px;
+    color: #fefefe;
+    border-radius: 5px;
+}
+.date-picker button {
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	background: #ff9d7c;
+    color: #721414;
+}
 
