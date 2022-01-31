@@ -70,4 +70,11 @@ table {
 	background: #ff9d7c;
     color: #721414;
 }
+.header-date-picker {
+	cursor: pointer;
+    color: #ff9d7c;
+}
+.vertical-data-box-container .data-box {
+	margin-bottom: 15px;
+}
 

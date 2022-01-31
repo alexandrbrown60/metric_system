@@ -40,11 +40,11 @@ $name = $result->$id->name;
 						</tr>
 						<tr>
 							<td><label for="pres">Показы:</label></td>
-							<td><input type="number" id="pres" required></td>
+							<td><input type="number" name="presentations" id="pres" required></td>
 						</tr>
 						<tr>
 							<td><label for="adds">Доп. показы:</label></td>
-							<td><input type="number" name="presentations" id="pres" required></td>
+							<td><input type="number" name="additional" id="pres" required></td>
 						</tr>
 						<tr>
 							<td><label for="zadatki">Задатки:</label></td>

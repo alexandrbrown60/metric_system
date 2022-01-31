@@ -1,10 +1,22 @@
-$(document).ready(function() {
-	//getting agent data
-	let url = "https://kluch.me/kluch_metrics/controllers/getSingleAgentData.php";
-	$.post(url, {id: 2}, function(data) {
-		buildFunnel('.funnel', data);
-	})
-});
+let url = "https://kluch.me/kluch_metrics/controllers/getSingleAgentData.php";
+
+//calls when page did load
+function buildStarter(id) {
+    $.post(url, {id: id, dataType: "summOfCalls"}, function(data) {
+        console.log(data);
+      buildFunnel('.funnel', data);
+    });
+
+    $.post(url, {id: id, dataType: "summOfSales"}, function(data) {
+      console.log(data);
+      buildFunnel('.funnel2', data);
+    });
+
+    $.post(url, {id: id, dataType: "objectsQuantity"}, function(data) {
+      console.log(data);
+      $('#agent-objects-quantity').append(data);
+    });
+}
 
 function buildFunnel(tag, data) {
 	var graph = new FunnelGraph({

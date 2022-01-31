@@ -45,6 +45,20 @@ class CrmManager {
 		return $result->data->count;
 	}
 
+	//получение объектов с детализированными данным
+	public function getDetailedObjects($type, $fields) {
+		$method = "/stock/filter";
+
+		$params = array(
+			'type' => $type,
+			'limit' => 20,
+			'fields' => $fields
+		);
+
+		$result = $this->initCurl($method, $params);
+
+		return $result->data;
+	}
 
 	//получение данных об агенте по id
 	public function getAgentInfo($id) {

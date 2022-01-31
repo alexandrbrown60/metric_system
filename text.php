@@ -1,9 +1,14 @@
 <?php
-header("Content-type: text/html; charset=utf-8");
 require 'modules/globals.php';
 require 'modules/classes/crm/CrmManager.php';
 
-$id = 24;
 $crm = new CrmManager();
-$result = $crm->getAgentInfo($id);
-print_r($result->$id);
+$type = $_POST['type'] ? $_POST['type'] : 1;
+$defaultfields = [
+	['id' => 1522, 'value' => "Наша база"],
+	['id' => 446, 'value' => 1]
+];
+
+$fields = $_POST['fields'] : $_POST['fields'] : $defaultfields;
+
+$objects = $crm->getDetailedObjects($type, $fields);
