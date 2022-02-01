@@ -29,6 +29,9 @@ table {
 .table tbody td {
 	border-top: 1px solid #1f354a;
 }
+.data-block {
+	margin-bottom: 25px;
+}
 .data-box {
 	background: #064764;
     padding: 20px;
@@ -77,4 +80,9 @@ table {
 .vertical-data-box-container .data-box {
 	margin-bottom: 15px;
 }
-
+table .rc2 {
+	background: #08435d;
+}
+table .rc4 {
+	background: #08435d;
+}

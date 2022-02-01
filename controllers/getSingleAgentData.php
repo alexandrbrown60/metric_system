@@ -28,6 +28,11 @@ switch ($dataType) {
 	case 'objectsQuantity':
 		$objects = $agentData->getObjectsQuantity();
 		echo $objects;
+		break;
+	case 'reportsTable':
+		$report = $agentData->getReports();
+		echo $report;
+		break;
 	default:
 		break;
 }

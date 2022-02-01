@@ -16,6 +16,11 @@ function buildStarter(id) {
       console.log(data);
       $('#agent-objects-quantity').append(data);
     });
+
+    $.post(url, {id: id, dataType: "reportsTable"}, function(data) {
+      console.log(data);
+      $('#reports-table').append(data);
+    });
 }
 
 function buildFunnel(tag, data) {

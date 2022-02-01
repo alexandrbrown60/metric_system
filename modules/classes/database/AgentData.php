@@ -98,6 +98,31 @@ class AgentData {
 	}
 
 	public function getReports() {
+		$table = $this->tableName;
 
+		$day = date('Y-m-d', strtotime('-7 day'));
+		$getTable = "SELECT * FROM $table WHERE date >= ?";
+		$input = [$day];
+
+		$result = $this->db->getData($getTable, $input);
+
+		$return = "";
+
+		foreach ($result as $key => $value) {
+			$return .= "<tr>";
+			$return .= "<td>".date('d.m.Y', strtotime($result[$key]['date']));
+			$return .= "<td class='rc1'>".$result[$key]['calls'];
+			$return .= "<td class='rc1'>".$result[$key]['meetings'];
+			$return .= "<td class='rc2'>".$result[$key]['incomeCalls'];
+			$return .= "<td class='rc2'>".$result[$key]['presentations'];
+			$return .= "<td class='rc2'>".$result[$key]['additional'];
+			$return .= "<td class='rc3'>".$result[$key]['zadatki'];
+			$return .= "<td class='rc3'>".$result[$key]['sdelki'];
+			$return .= "<td class='rc4'>".$result[$key]['flats']."/".$result[$key]['flatsExclusive'];
+			$return .= "<td class='rc4'>".$result[$key]['houses']."/".$result[$key]['housesExclusive'];
+			$return .= "<td class='rc4'>".$result[$key]['commercial']."/".$result[$key]['commercialExclusive'];
+		}
+
+		return $return;
 	}
 }

@@ -14,7 +14,7 @@ require '../controllers/getSingleAgentName.php';
 
             </div>
            </div>
-           <div class="row">
+           <div class="row data-block">
             <div class="col-5">
               <h4>Воронка набора <span class="header-date-picker" id="header-date-1">за всё время</span></h4>
               <div id="funnel-1-date-picker" class="date-picker hidden">
@@ -38,8 +38,30 @@ require '../controllers/getSingleAgentName.php';
               
             </div>            
            </div>
-           <div class="row">
-             
+           <div class="row data-block">
+             <div class="col-12">
+              <h4>Отчетность за последнюю неделю</h4>
+              <div class="data-box">
+                <table class="table">
+                 <thead>
+                   <tr>
+                     <th>Дата</th>
+                     <th>Исходящих</th>
+                     <th>Встреч</th>
+                     <th>Входящих</th>
+                     <th>Показов</th>
+                     <th>Доп. показов</th>
+                     <th>Задатки</th>
+                     <th>Сделки</th>
+                     <th>Квартир</th>
+                     <th>Дома и участки</th>
+                     <th>Коммерция</th>
+                   </tr>
+                 </thead>
+                 <tbody id="reports-table"></tbody>
+               </table>
+              </div>       
+             </div>
            </div>
 
 
