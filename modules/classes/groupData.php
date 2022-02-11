@@ -14,4 +14,14 @@ class groupData {
 
 		return $groups;
 	}
+
+	//get agents by group
+	public function getAgentsByGroupId($id) {
+		$sql = "SELECT name FROM managers WHERE groupId = ?";
+		$inputs = [$id];
+
+		$agentsByGroup = $this->db->getData($sql, $inputs);
+
+		return $agentsByGroup;
+	}
 }
