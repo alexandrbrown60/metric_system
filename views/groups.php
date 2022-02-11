@@ -18,8 +18,7 @@ require 'html-parts/header.php';
               </button>
             </div>
            </div>
-           <div class="row">
-            <h3>Общая сводка</h3>
+           <div class="row vertical-data-box-container" id="groups">
             
            </div>
 
@@ -31,5 +30,10 @@ require 'html-parts/header.php';
 <?php 
 require 'html-parts/footer.php';
 ?>
+<script type="text/javascript">
+  let url = "https://kluch.me/kluch_metrics/controllers/displayGroups.php";
+  let dataBox = "#groups";
+  getData(url, dataBox);
+</script>
 </body>
 </html>

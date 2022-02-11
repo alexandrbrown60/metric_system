@@ -85,3 +85,5 @@ require '../controllers/getObjects.php';
 <?php 
 require 'html-parts/footer.php';
 ?>
+</body>
+</html>
