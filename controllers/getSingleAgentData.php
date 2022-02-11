@@ -3,7 +3,7 @@ header("content-type: application/javascript");
 require __DIR__."/../modules/globals.php";
 require __DIR__."/../modules/classes/database/Connection.php";
 require __DIR__."/../modules/classes/database/DatabaseManager.php";
-require __DIR__."/../modules/classes/database/AgentData.php";
+require __DIR__."/../modules/classes/AgentData.php";
 
 $dataType = $_POST['dataType'];
 $id = $_POST['id'];
