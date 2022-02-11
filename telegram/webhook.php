@@ -22,8 +22,7 @@ if($tg->isMessage()) {
 	if($tg->userMessage == "/start") {
 		$text = "Укажите id своего профиля в IntrumCRM";
 		$tg->sendMessage(["chat_id" => $tg->userId, "text" => $text]);
-	} 
-	else {
+	} else {
 		if(is_numeric($tg->userMessage) && strlen($tg->userMessage) < 5) {
 			$id = intval($tg->userMessage);
 			$agentInfo = $crm->getAgentInfo($id);

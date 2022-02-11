@@ -12,6 +12,8 @@ class AgentData {
 		$this->tableName = "agent_$id";
 	}
 
+
+	//getting agent name
 	public function name($id) {
 		$sql = "SELECT name FROM managers WHERE id = ?";
 		$inputs = [$id];
@@ -19,6 +21,7 @@ class AgentData {
 		return $result[0]['name'];
 	}
 
+	//getting summ of calls and meeting for build graph
 	public function getSummOfCalls($from, $to) {
 
 		$table = $this->tableName;
@@ -43,6 +46,8 @@ class AgentData {
 		return $result;
 	}
 
+
+	//getting summ of columns to build graph
 	public function getSummOfSales($from, $to) {
 		$table = $this->tableName;
 
@@ -69,6 +74,8 @@ class AgentData {
 		return $result;
 	}
 
+
+	//getting proprtys quantity for display on agent page
 	public function getObjectsQuantity() {
 		$table = $this->tableName;
 
@@ -97,6 +104,8 @@ class AgentData {
 
 	}
 
+
+	//getting report for display on agent page
 	public function getReports() {
 		$table = $this->tableName;
 
@@ -124,5 +133,29 @@ class AgentData {
 		}
 
 		return $return;
+	}
+
+	//delete agent from managers table and his/him table also
+	public function deleteAgent($id) {
+		$table = "agent_$id";
+
+		//delete agent from managers table
+		$deleteFromManagers = "DELETE FROM managers WHERE id = ?";
+		$deleteId = [$id];
+		$this->db->sendRequest($deleteFromManagers, $deleteId);
+
+		//drop agent table
+		$dropTable = "DROP TABLE IF EXIST $table";
+		$this->db->createTable($dropTable);
+	}
+
+	//change group id
+	public function changeGroupId($id, $newGroupId) {
+		$table = "agent_$id";
+
+		//sql request
+		$sql = "UPDATE managers SET groupId = ? WHERE id = ?";
+		$inputs = [$newGroupId, $id];
+		$this->db->sendRequest($sql, $inputs);
 	}
 }
